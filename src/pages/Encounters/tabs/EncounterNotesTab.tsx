@@ -4,7 +4,6 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { formatRelative } from "date-fns";
 import {
   Info,
   Loader2,
@@ -48,6 +47,7 @@ import { TooltipComponent } from "@/components/ui/tooltip";
 
 import { Avatar } from "@/components/Common/Avatar";
 import Loading from "@/components/Common/Loading";
+import RelativeDateTooltip from "@/components/Common/RelativeDateTooltip";
 import { CardListSkeleton } from "@/components/Common/SkeletonLoading";
 
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -59,7 +59,6 @@ import routes from "@/Utils/request/api";
 import mutate from "@/Utils/request/mutate";
 import query from "@/Utils/request/query";
 import { PaginatedResponse } from "@/Utils/request/types";
-import { formatDateTime } from "@/Utils/utils";
 import { usePermissions } from "@/context/PermissionContext";
 import { EncounterTabProps } from "@/pages/Encounters/EncounterShow";
 import { inactiveEncounterStatus } from "@/types/emr/encounter";
@@ -173,13 +172,10 @@ function MessageItem({
             <span className="text-gray-700 font-medium">
               {message.created_by.username}
             </span>
-            <time
+            <RelativeDateTooltip
+              date={message.created_date}
               className="text-gray-500"
-              dateTime={message.created_date}
-              title={formatDateTime(message.created_date)}
-            >
-              {formatRelative(message.created_date, new Date())}
-            </time>
+            />
           </p>
           <div
             className={cn(
