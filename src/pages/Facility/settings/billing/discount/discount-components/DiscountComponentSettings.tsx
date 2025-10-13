@@ -70,7 +70,6 @@ export function DiscountComponentSettings() {
     setComponentToDelete(undefined);
   };
 
-  // Combine instance and facility components
   const allComponents: AnnotatedMonetaryComponent[] = [
     ...(facility.instance_discount_monetary_components || []).map(
       (component: MonetaryComponentRead) => ({
@@ -96,20 +95,17 @@ export function DiscountComponentSettings() {
 
   return (
     <>
-      <Page
-        title={t("discount_monetary_components")}
-        options={
-          <div className="flex flex-col lg:flex-row items-center gap-2">
-            <Input
-              placeholder={t("search")}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full lg:w-[300px]"
-            />
-            <CreateDiscountMonetaryComponentSheet />
-          </div>
-        }
-      >
+      <Page title={t("discount_monetary_components")}>
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-3 mt-2">
+          <Input
+            placeholder={t("search")}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full lg:w-[300px]"
+          />
+          <CreateDiscountMonetaryComponentSheet />
+        </div>
+
         <div className="rounded-md border overflow-hidden mt-4">
           <Table>
             <TableHeader>
@@ -118,7 +114,7 @@ export function DiscountComponentSettings() {
                 <TableHead>{t("name")}</TableHead>
                 <TableHead>{t("discount_code")}</TableHead>
                 <TableHead>{t("value")}</TableHead>
-                <TableHead className="w-24"></TableHead>
+                <TableHead className="w-24" />
               </TableRow>
             </TableHeader>
             <TableBody className="bg-white">

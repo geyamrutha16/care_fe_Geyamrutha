@@ -90,20 +90,17 @@ export function DiscountCodeSettings() {
 
   return (
     <>
-      <Page
-        title={t("discount_codes")}
-        options={
-          <div className="flex flex-col lg:flex-row items-center gap-2 ">
-            <Input
-              placeholder={t("search")}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full lg:w-[300px]"
-            />
-            <CreateDiscountCodeSheet />
-          </div>
-        }
-      >
+      <Page title={t("discount_codes")}>
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-3 mt-2">
+          <Input
+            placeholder={t("search")}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full lg:w-[300px]"
+          />
+          <CreateDiscountCodeSheet />
+        </div>
+
         <div className="rounded-md border overflow-hidden mt-4">
           <Table>
             <TableHeader>
@@ -111,7 +108,7 @@ export function DiscountCodeSettings() {
                 <TableHead className="w-20" />
                 <TableHead>{t("name")}</TableHead>
                 <TableHead>{t("code")}</TableHead>
-                <TableHead className="w-24"></TableHead>
+                <TableHead className="w-24" />
               </TableRow>
             </TableHeader>
             <TableBody className="bg-white">
